@@ -42,26 +42,28 @@ const addTask = async () => {
     // Actualizar la lista de tareas en la página
     updateTaskList();
 }
-    function updateTaskList() {
- 
-        list.innerHTML ='';
+function updateTaskList() {
+    list.innerHTML = '';
 
     for (const task of tasks) {
-    list.innerHTML += `<div class="task-container" id="${task.id}">
-    <label for=""> 
-        <input type="checkbox" class="taskCheckbox">
+        // Determina si la tarea está completada
+        const isCompleted = task.completed ? 'task-completed' : '';
+
+        list.innerHTML += `<div class="task-container ${isCompleted}" id="${task.id}">
+        <label for=""> 
+            <input type="checkbox" class="taskCheckbox" ${task.completed ? 'checked' : ''}>
             ${task.text}
-    </label>
-    <div>
-    <button class="checkBtn"><img src="./images/cheque.png" alt="checkBtn" class="check" ></button>        
-    <button class="closeBtn"><img src="./images/eliminar.png" alt="closeBtn" class="close" ></button> 
-    </div>
-    </div>`;
-}
-    input.value ='';
+        </label>
+        <div>
+        <button class="checkBtn"><img src="./images/cheque.png" alt="checkBtn" class="check" ></button>        
+        <button class="closeBtn"><img src="./images/eliminar.png" alt="closeBtn" class="close" ></button> 
+        </div>
+        </div>`;
+    }
+    input.value = '';
     sectionSinTareas.style.display = 'none';
     updateStats();
-};
+}
 
 list.addEventListener('click', (event) => {
     if (event.target.tagName === 'IMG') {
@@ -82,15 +84,6 @@ list.addEventListener('click', (event) => {
     }
 });
 
-// let updateStats = () => {
-//     // Obtiene todos los contenedores de tareas
-//     let tasks = list.querySelectorAll('.task-container');
-//     // Obtiene solo los checkboxes marcados como completados
-//     let completedTasks = list.querySelectorAll('.check:checked');
-//     // Actualiza el contenido de 'stats' con el número de tareas completadas y totales
-//     stats.innerHTML = `<p> Tareas pendientes: ${tasks.length - completedTasks.length} Completadas: ${completedTasks.length} </p>`;
-// };
-
 let updateStats = () => {
     // Calcula el número de tareas completadas y totales
     let completedTasks = tasks.filter(task => task.completed).length;
@@ -98,4 +91,4 @@ let updateStats = () => {
 
     // Actualiza el contenido de 'stats' con el número de tareas completadas y totales
     stats.innerHTML = `<p> Tareas pendientes: ${totalTasks - completedTasks} Completadas: ${completedTasks} </p>`;
-};git 
+};

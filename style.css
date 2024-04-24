@@ -94,7 +94,7 @@ h3 {
 
 .closeBtn {
     border-style: none;
-    background-color: var(--aqualigth);
+    background-color: transparent;
 }
 .close{
     width: 20px;
@@ -109,7 +109,7 @@ h3 {
 
 .checkBtn {
     border-style: none;
-    background-color: var(--aqualigth);
+    background-color: transparent;
 }
 .check {
     border: none;
@@ -125,6 +125,10 @@ h3 {
 #stats{
     margin-top: 25px;
     color: var(--aqualigth);
+}
+
+.task-completed {
+    background-color: #06b72f; 
 }
 
 
