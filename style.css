@@ -8,17 +8,20 @@
     --grey: rgb(78, 70, 70);
 }
 
-*{
-    margin: 0;
-    padding: 0;
-}
 body{
     font-family: "Quicksand", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; 
+    margin: 0;
+    padding: 0;
+    background-color: var(--greenligth);
 }
 
 .container{
-    height: 45rem;
-    background-color: var(--greenligth);
+    margin-top: 100px;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -67,6 +70,17 @@ form input[type="submit"]:hover{
     color: var(--white);
 }
 
+#taskDueDate {
+    text-align: center;
+    color: var(--aqualigth);
+}
+
+.section1{
+    background-color: var(--aqualigth);
+    width: 350px;
+    border-radius: 20px;
+    padding: 10px;
+}
 .list-container{
     width: 400px;
     margin: 0 auto
@@ -89,6 +103,7 @@ h3 {
     font-size: 1.1em;
     font-weight: 500;
     color: var(--grey);
+    width: auto;
     
 }
 
@@ -131,7 +146,46 @@ h3 {
     background-color: #06b72f; 
 }
 
+/* @media (max-width: 425px ) {
+    .task-container {
+        width: 250px;
+        display: flex;
+        align-content: center;
+        align-items: center;
+    }
+} */
 
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+    }
 
+    .container {
+        margin-top: 50px; /* Reduce el margen superior para pantallas más pequeñas */
+        padding: 10px; /* Reduce el padding para pantallas más pequeñas */
+    }
 
+    .section1, .list-container {
+        width: 100%; /* Hace que los contenedores ocupen el ancho completo de la pantalla */
+        max-width: 300px; /* Define un ancho máximo para los contenedores */
+        margin: auto; /* Centra los contenedores horizontalmente */
+    }
+
+    form input[type="submit"] {
+        font-size: 1.5em; /* Reduce el tamaño de fuente del botón de envío */
+        width: 30px; /* Reduce el tamaño del botón de envío */
+        height: 30px; /* Reduce el tamaño del botón de envío */
+    }
+
+    .task-container {
+        flex-direction: column; /* Cambia la dirección de flexión para que los elementos se apilen verticalmente */
+        padding: 10px; /* Reduce el padding para pantallas más pequeñas */
+    }
+
+    .button-container{
+        display: flex;
+        justify-content: center;
+    }
+
+}
 

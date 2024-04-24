@@ -24,14 +24,15 @@ const addTask = async () => {
     idCounter++;
 
     let newValue = input.value;
+    let dueDate = document.querySelector('#taskDueDate').value; // Obtiene la fecha límite del campo de entrada
 
     let newTask = {
         id: idCounter,
         text: newValue,
         completed: false,
+        dueDate: dueDate, // Almacena la fecha límite en la tarea
     };
 
-    // let tasks = getTasksFromLocalStorage();
 
     // Agregar la nueva tarea a la lista
     tasks.push(newTask);
@@ -52,15 +53,17 @@ function updateTaskList() {
         list.innerHTML += `<div class="task-container ${isCompleted}" id="${task.id}">
         <label for=""> 
             <input type="checkbox" class="taskCheckbox" ${task.completed ? 'checked' : ''}>
-            ${task.text}
+            ${task.text} <br>
+            Fecha tope: ${task.dueDate}
         </label>
-        <div>
+        <div class="button-container">
         <button class="checkBtn"><img src="./images/cheque.png" alt="checkBtn" class="check" ></button>        
         <button class="closeBtn"><img src="./images/eliminar.png" alt="closeBtn" class="close" ></button> 
         </div>
         </div>`;
     }
     input.value = '';
+    document.querySelector('#taskDueDate').value = ''; // Limpia el campo de entrada de la fecha límite
     sectionSinTareas.style.display = 'none';
     updateStats();
 }
