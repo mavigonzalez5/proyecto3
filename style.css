@@ -92,17 +92,25 @@ h3 {
     
 }
 
-.closeBtn{
+.closeBtn {
+    border-style: none;
+    background-color: var(--aqualigth);
+}
+.close{
     width: 20px;
     height: 20px;
 }
 
-.closeBtn:hover{
+.close:hover{
     cursor: pointer;
     width: 25px;
     height: 25px;
 }
 
+.checkBtn {
+    border-style: none;
+    background-color: var(--aqualigth);
+}
 .check {
     border: none;
     width: 20px;
