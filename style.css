@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Quicksand:wght@300..700&display=swap');
+
+:root{
+    --redligth: #FA7070;
+    --white: #FEFDED;
+    --aqualigth: #C6EBC5;
+    --greenligth: #A1C398;
+    --grey: rgb(78, 70, 70);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "Quicksand", sans-serif;
+}
+
+.container{
+    height: 45rem;
+    background-color: var(--greenligth);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    font-family: "Anton", sans-serif;
+    color: var(--grey);
+}
+
+form input{
+    height: 50px;
+    background-color: #A1C398;
+    color: var(--white);
+    border-style: none;
+    font-size: large;
+    font-family: "Quicksand", sans-serif;
+
+}
+
+form input[type="text"]::placeholder{
+    color: var(--aqualigth);
+}
+
+form input[type="text"]:focus{
+    outline: none;
+
+}
+
+form input[type="submit"]{
+    font-size: 2em;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-style: none;
+    background-color: var(--white);
+    color: var(--greenligth);
+    padding-bottom: 20px;
+}
+
+form input[type="submit"]:hover{
+    background-color: var(--aqualigth);
+    cursor: pointer;
+    color: var(--white);
+}
+
+.list-container{
+    width: 400px;
+    margin: 0 auto
+
+}
+
+h3 {
+    text-align: center;
+    color: var(--grey);
+}
+
+
+.task-container{
+    background-color: var(--aqualigth);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    padding: 16px;
+    border-radius: 20px;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--grey);
+    
+}
+
+.closeBtn{
+    width: 20px;
+    height: 20px;
+}
+
+.closeBtn:hover{
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+
+.check {
+    border: none;
+    width: 20px;
+    height: 20px;
+}
+
+.check:hover{
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+#stats{
+    margin-top: 25px;
+    color: var(--aqualigth);
+}
+
+
+
+
+
