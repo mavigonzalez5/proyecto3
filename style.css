@@ -32,6 +32,7 @@ body{
 h1{
     font-family: "Anton", sans-serif;
     color: var(--grey);
+    font-size: 40px;
 }
 
 form input{
@@ -73,6 +74,12 @@ form input[type="submit"]:hover{
 #taskDueDate {
     text-align: center;
     color: var(--aqualigth);
+    cursor: pointer;
+
+}
+
+#taskDueDate:focus {
+    outline: none;
 }
 
 .section1{
@@ -80,6 +87,7 @@ form input[type="submit"]:hover{
     width: 350px;
     border-radius: 20px;
     padding: 10px;
+    margin-top: 50px;
 }
 .list-container{
     width: 400px;
@@ -97,6 +105,7 @@ h3 {
     background-color: var(--aqualigth);
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
     margin-bottom: 6px;
     padding: 16px;
     border-radius: 20px;
@@ -140,20 +149,12 @@ h3 {
 #stats{
     margin-top: 25px;
     color: var(--aqualigth);
+    margin-bottom: 50px;
 }
 
 .task-completed {
     background-color: #06b72f; 
 }
-
-/* @media (max-width: 425px ) {
-    .task-container {
-        width: 250px;
-        display: flex;
-        align-content: center;
-        align-items: center;
-    }
-} */
 
 @media (max-width: 768px) {
     body {
@@ -180,6 +181,8 @@ h3 {
     .task-container {
         flex-direction: column; /* Cambia la dirección de flexión para que los elementos se apilen verticalmente */
         padding: 10px; /* Reduce el padding para pantallas más pequeñas */
+        justify-content: center;
+        text-align: center;
     }
 
     .button-container{
