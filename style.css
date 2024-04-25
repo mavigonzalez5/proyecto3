@@ -82,6 +82,25 @@ form input[type="submit"]:hover{
     outline: none;
 }
 
+#filterDate{
+    color: var(--aqualigth);
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+#filterDate:focus {
+    outline: none;
+}
+
+#filterBtn{
+    border: none;
+    border-radius: 20px;
+    width: 80px;
+    height: 30px;
+}
+
+
 .section1{
     background-color: var(--aqualigth);
     width: 350px;
@@ -146,6 +165,21 @@ h3 {
     width: 25px;
     height: 25px;
 }
+
+#toggleFilterBtn{
+    border-style: none;
+    background-color: transparent;
+}
+
+#toggleFilterBtn:hover{
+    cursor: pointer;
+}
+
+.OpenFilter{
+    border: none;
+    width: 30px;
+    height: 30px;
+}
 #stats{
     margin-top: 25px;
     color: var(--aqualigth);
@@ -190,5 +224,8 @@ h3 {
         justify-content: center;
     }
 
+}
+#filterContainer {
+    display: none;
 }
 

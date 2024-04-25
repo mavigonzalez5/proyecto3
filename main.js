@@ -3,8 +3,9 @@ const input = document.querySelector('input[type="text"]');
 const list = document.querySelector('#list'); 
 const stats = document.querySelector('#stats');
 const sectionSinTareas = document.querySelector('.section1');
+const toggleFilterBtn = document.querySelector('#toggleFilterBtn');
+const filterContainer = document.querySelector('#filterContainer');
 let tasks = [];
-
 
 function saveTasksToLocalStorage(tasks) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -39,17 +40,20 @@ const addTask = async () => {
 
     updateTaskList();
 }
-function updateTaskList() {
+
+function updateTaskList(filterDate) {
     list.innerHTML = '';
 
-    for (const task of tasks) {
+    const filteredTasks = filterDate ? tasks.filter(task => task.dueDate === filterDate) : tasks;
+
+    for (const task of filteredTasks) {
         const isCompleted = task.completed ? 'task-completed' : '';
 
         list.innerHTML += `<div class="task-container ${isCompleted}" id="${task.id}">
         <label for=""> 
             <input type="checkbox" class="taskCheckbox" ${task.completed ? 'checked' : ''}>
             ${task.text} <br>
-            Fecha tope: ${task.dueDate}
+            Fecha límite: ${task.dueDate}
         </label>
         <div class="button-container">
         <button class="checkBtn"><img src="./images/cheque.png" alt="checkBtn" class="check" ></button>        
@@ -62,6 +66,11 @@ function updateTaskList() {
     sectionSinTareas.style.display = 'none';
     updateStats();
 }
+
+document.querySelector('#filterBtn').addEventListener('click', () => {
+    const filterDate = document.querySelector('#filterDate').value;
+    updateTaskList(filterDate);
+});
 
 list.addEventListener('click', (event) => {
     if (event.target.tagName === 'IMG') {
@@ -80,9 +89,21 @@ list.addEventListener('click', (event) => {
     }
 });
 
+toggleFilterBtn.addEventListener('click', () => { 
+    if (filterContainer.style.display === 'none') {
+        filterContainer.style.display = 'block';
+        toggleFilterBtn.innerHTML = `<img src="./images/controles-deslizantes (1).png" alt="OpenFilter" class="OpenFilter">`;
+    } else {
+        filterContainer.style.display = 'none';
+        toggleFilterBtn.innerHTML = `<img src="./images/controles-deslizantes (1).png" alt="OpenFilter" class="OpenFilter">`;
+    }
+});
+
+
 let updateStats = () => {
     let completedTasks = tasks.filter(task => task.completed).length;
     let totalTasks = tasks.length;
 
     stats.innerHTML = `<p> Tareas pendientes: ${totalTasks - completedTasks} Completadas: ${completedTasks} </p>`;
 };
+
