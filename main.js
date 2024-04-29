@@ -7,12 +7,24 @@ const toggleFilterBtn = document.querySelector('#toggleFilterBtn');
 const filterContainer = document.querySelector('#filterContainer');
 let tasks = [];
 
-function saveTasksToLocalStorage(tasks) {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+async function saveTasksToLocalStorage(tasks) {
+    const tasksJson = JSON.stringify(tasks);
+    const response = await fetch('http://localhost:3000/tasks', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: tasksJson
+    });
+
+    if (!response.ok) {
+        throw new Error('Error al guardar las tareas');
+    }
 }
 
 async function getTasksFromLocalStorage() {
-    const tasks = await JSON.parse(localStorage.getItem('tasks')) || [];
+    const response = await fetch('http://localhost:3000/tasks');
+    const tasks = await response.json();
     return tasks;
 }
 
@@ -36,7 +48,7 @@ const addTask = async () => {
 
     tasks.push(newTask);
 
-    saveTasksToLocalStorage(tasks);
+    await saveTasksToLocalStorage(tasks);
 
     updateTaskList();
 }
@@ -44,27 +56,29 @@ const addTask = async () => {
 function updateTaskList(filterDate) {
     list.innerHTML = '';
 
-    const filteredTasks = filterDate ? tasks.filter(task => task.dueDate === filterDate) : tasks;
+    getTasksFromLocalStorage().then(tasks => {
+        const filteredTasks = filterDate ? tasks.filter(task => task.dueDate === filterDate) : tasks;
 
-    for (const task of filteredTasks) {
-        const isCompleted = task.completed ? 'task-completed' : '';
+        for (const task of filteredTasks) {
+            const isCompleted = task.completed ? 'task-completed' : '';
 
-        list.innerHTML += `<div class="task-container ${isCompleted}" id="${task.id}">
-        <label for=""> 
-            <input type="checkbox" class="taskCheckbox" ${task.completed ? 'checked' : ''}>
-            ${task.text} <br>
-            Fecha límite: ${task.dueDate}
-        </label>
-        <div class="button-container">
-        <button class="checkBtn"><img src="./images/cheque.png" alt="checkBtn" class="check" ></button>        
-        <button class="closeBtn"><img src="./images/eliminar.png" alt="closeBtn" class="close" ></button> 
-        </div>
-        </div>`;
-    }
-    input.value = '';
-    document.querySelector('#taskDueDate').value = ''; 
-    sectionSinTareas.style.display = 'none';
-    updateStats();
+            list.innerHTML += `<div class="task-container ${isCompleted}" id="${task.id}">
+            <label for=""> 
+                <input type="checkbox" class="taskCheckbox" ${task.completed ? 'checked' : ''}>
+                ${task.text} <br>
+                Fecha límite: ${task.dueDate}
+            </label>
+            <div class="button-container">
+            <button class="checkBtn"><img src="./images/cheque.png" alt="checkBtn" class="check" ></button>        
+            <button class="closeBtn"><img src="./images/eliminar.png" alt="closeBtn" class="close" ></button> 
+            </div>
+            </div>`;
+        }
+        input.value = '';
+        document.querySelector('#taskDueDate').value = ''; 
+        sectionSinTareas.style.display = 'none';
+        updateStats();
+    });
 }
 
 document.querySelector('#filterBtn').addEventListener('click', () => {
